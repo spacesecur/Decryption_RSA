@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Settings</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jsencrypt.min.js"></script>
+<script type="text/javascript" src="options.js"></script>
+<style type="text/css">
+*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.clearfix:after{content:"";display:block;clear:both}html,body{margin:0;padding:0;background-color:#0b0c1b;font-size:18px;color:#333;font-family:Roboto,Tahoma,Arial,Verdana,sans-serif}a:active,a:hover,a{text-decoration:none;color:#84889c}.header,.content-wrapper,.container,.content,.footer{display:-webkit-flex;display:-moz-flex;display:-ms-flex;display:-o-flex;display:flex;flex-direction:row}.header{height:70px;color:#fff;background:rgba(3,9,25,0.5);backdrop-filter:blur(20px);position:fixed;top:0;left:0;width:100%;z-index:1000;padding:25px 50px;font-size:20px;font-weight:700;margin:0}.footer{height:100px;font-size:14px;position:relative;color:#84889c;padding:0 50px}.content-wrapper{margin:0 auto;flex-direction:column}.container{flex-wrap:nowrap}.content{width:100%;flex-direction:column;flex:1 1 auto;order:0;position:relative;margin-top:70px;padding:20px 40px;min-height:700px}.lines{position:fixed;left:0;bottom:0;z-index:0}h5{display:block;font-size:1em;font-weight:700;color:#fff;margin:0}textarea{width:99%;background:none;min-height:300px;border:none;padding:25px;background-color:transparent;font-size:14px;color:rgba(255,255,255,0.6);margin:0}textarea :active,:hover,:focus{outline:0;outline-offset:0}.tabs_set{position:relative}.tab_set,.tab-title{display:inline-block;color:rgba(255,255,255,0.6)}.tab_set input[type="radio"]{display:none}.tab-title{padding:5px 15px 10px!important;border-bottom:none;cursor:pointer}.tab-content{position:absolute;border-top:1px solid rgba(255,255,255,0.12);padding:10px;left:0;width:calc(100% - 20px);display:none}.tab_set :checked + .tab-title{position:relative;color:#8DCAFE;top:0;z-index:1;border-bottom:2px solid #8DCAFE;padding:0;margin:0}.tab_set :checked ~ .tab-content{display:block;padding-top:25px}.rsa-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr;gap:0 0;grid-template-areas:"item-0 item-1" "item-full item-full";max-width:1200px;padding:20px}.setting_key{border-radius:15px;padding:10px 20px;background-color:#222735;background-image:repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(255,255,255,0.02) 6px,rgba(255,255,255,0.02) 12px)}.private_key_add{background:linear-gradient(0deg,rgba(255,255,255,0.16),rgba(255,255,255,0.16)),#030919;border-radius:15px;margin:20px 0}.item-0{grid-area:item-0;padding-right:10px}.item-1{grid-area:item-1}.item-full{grid-area:item-full;padding-top:20px}.btn_rsa{display:inline-block;margin-bottom:0;font-weight:400;text-align:center;vertical-align:middle;cursor:pointer;background-image:none;border:1px solid transparent;white-space:nowrap;padding:3px 12px;line-height:1.4;border-radius:4px;text-decoration:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;padding:0}.btn-three{color:#FFF;transition:all .5s;position:relative;z-index:1;max-width:300px!important}.btn-three::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;background-color:rgba(255,255,255,0.1);background-size:200% 200%;animation:animate_gradient 5s ease infinite;transition:all .3s}.btn-three:hover::before{opacity:0;transform:scale(0.5,0.5)}.btn-three::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:0;transition:all .3s;text-decoration:none;border:1px solid #8DCAFE;transform:scale(1.2,1.2);-webkit-backdrop-filter:blur(0px);backdrop-filter:blur(0px)}.btn-three:hover::after{opacity:1;transform:scale(1,1)}.btn-three:active,.btn-three.active{outline:0;background-image:none;color:#8DCAFE}@keyframes btn-three{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}.btn_rsa input[type=submit]{background:transparent;height:34px!important;border:0;color:#fff;font-size:16px;outline:none!important;font-family:'Roboto Condensed';padding:0 30px!important}.btn_rsa input[type=submit]:active{-webkit-backdrop-filter:blur(0px);backdrop-filter:blur(0px);color:#8DCAFE}#modalContainer{background:rgba(3,9,25,0.5);backdrop-filter:blur(20px);position:absolute;width:100%;height:100%;top:0;left:0;z-index:10000}#alertBox{background-color:#20252b;width:478px;padding:25px 50px;border-radius:15px;text-align:center;position:fixed;left:50%!important;top:50%!important;margin-left:-256px;margin-top:-169px;overflow:hidden;display:none;z-index:2000}#modalContainer > #alertBox{position:fixed}#alertBox h1{margin:0;font:bold .9em verdana,arial;background-color:#3073BB;color:#FFF;border-bottom:1px solid #000;padding:2px 0 2px 5px}#alertBox p{color:#fff;font-size:20px;text-align:center;text-transform:none;position:relative;line-height:normal;padding-bottom:20px}#alertBox #closeBtn{background-color:#8dcafe;color:#212635;border:none;box-shadow:none;font-size:17px;font-weight:500;border-radius:10px;padding:10px 32px;margin:26px 5px 0;cursor:pointer;text-transform:uppercase}#alertBox #closeBtn:active{background-color:#8dcafe}#alertBox #closeBtn:hover{background-color:#a1d9f2}#alertBox #closeBtn:focus{outline:none;box-shadow:0 0 2px maroon inset 0 0 0 1px #000}#mContainer{position:relative;width:600px;margin:auto;padding:5px;border-top:2px solid #000;border-bottom:2px solid #000;font:.7em verdana,arial}h1,h2{margin:0;padding:4px;font:bold 1.5em verdana;border-bottom:1px solid #000}code{font-size:1.2em;color:#069}#credits{position:relative;margin:25px auto 0;width:350px;font:.7em verdana;border-top:1px solid #000;border-bottom:1px solid #000;height:90px;padding-top:4px}#credits img{float:left;margin:5px 10px 5px 0;border:1px solid #000;width:80px;height:79px}.important{background-color:#F5FCC8;padding:2px}
+</style>
+</head>
+<body>
+<div class="content-wrapper">
+		<header class="header">Decryption RSA</header>
+		<img src="data:image/svg+xml;base64,CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjEwMjRweCIgaGVpZ2h0PSI3NjhweCIgdmlld0JveD0iMCAwIDEwMjQgNzY4Ij4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iR3JhZGllbnRfMSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSItNy4wMjUwMDAwMDAwMDAwMzQiIHkxPSI3NjIuODg3NSIgeDI9IjYyMy4xMjUiIHkyPSIyMTMuNDEyNDk5OTk5OTk5OTciIHNwcmVhZE1ldGhvZD0icGFkIj4KPHN0b3AgIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxMjE2NUYiLz4KCjxzdG9wICBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwNjBDMjciIHN0b3Atb3BhY2l0eT0iMCIvPgo8L2xpbmVhckdyYWRpZW50PgoKPGcgaWQ9IkxheWVyMl8wX0ZJTEwiPgo8cGF0aCBmaWxsPSJ1cmwoI0dyYWRpZW50XzEpIiBzdHJva2U9Im5vbmUiIGQ9IgpNIDEwMjggLTUuNgpMIDAgLTUuNiAwIDc2OCAxMDI4IDc2OCAxMDI4IC01LjYgWiIvPgo8L2c+Cgo8ZyBpZD0iTGF5ZXIwXzBfRklMTCI+CjxwYXRoIGZpbGw9IiMyMjI2NEQiIGZpbGwtb3BhY2l0eT0iMC43MDk4MDM5MjE1Njg2Mjc1IiBzdHJva2U9Im5vbmUiIGQ9IgpNIDM3OSA1NzIuOQpMIDM2OSA1ODIuNzUgMzc5IDU4Mi43NSAzNzkgNTcyLjkgWiIvPgoKPHBhdGggZmlsbD0iIzIyMjY0RCIgc3Ryb2tlPSJub25lIiBkPSIKTSA3OS4zIDQwMi40CkwgNjkuMyA0MDIuNCA2OS4zIDQxMi4yNSA3OS4zIDQwMi40Ck0gMTU2LjA1IDQ3OS44CkwgMTU2LjA1IDQ4OS42NSAxNjYuMDUgNDc5LjggMTU2LjA1IDQ3OS44Ck0gMjc3LjYgNTUxLjI1CkwgMjg3LjYgNTUxLjI1IDI4Ny42IDU0MS40IDI3Ny42IDU1MS4yNQpNIDE4MS42NSA1NzUuMwpMIDE5MS42NSA1NzUuMyAxOTEuNjUgNTY1LjQ1IDE4MS42NSA1NzUuMwpNIDE1Mi41IDM5NS40CkwgMTQyLjUgMzk1LjQgMTQyLjUgNDA1LjI1IDE1Mi41IDM5NS40IFoiLz4KPC9nPgoKPHBhdGggaWQ9IkxheWVyMV8wXzFfU1RST0tFUyIgc3Ryb2tlPSIjMjIyNjREIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iNCIgZmlsbD0ibm9uZSIgZD0iCk0gLTEuNDUgMjkyLjIKTCA0NzMuOCA3NjcuNQpNIC0xLjQ1IDI3Mi4yCkwgNDkzLjggNzY3LjUKTSAtMS40NSAyODIuMgpMIDQ4My44IDc2Ny41Ck0gLTEuNDUgNDIyLjI1CkwgMzQzLjggNzY3LjUKTSAtMS40NSA3MTIuOQpMIDUyLjUgNzY2Ljg1Ck0gLTEuNDUgNzAyLjkKTCA2Mi41IDc2Ni44NQpNIC0xLjQ1IDYyMi45CkwgMTQyLjUgNzY2Ljg1Ck0gLTEuNDUgNjEyLjkKTCAxNTIuNSA3NjYuODUKTSAtMS40NSA1MzIuOQpMIDIzMi41IDc2Ni44NQpNIC0xLjQ1IDUyMi45CkwgMjQyLjUgNzY2Ljg1Ck0gLTEuNDUgNDQyLjkKTCAzMjIuNSA3NjYuODUKTSAtMS40NSAzOTIuMjUKTCAzNzMuOCA3NjcuNQpNIC0xLjQ1IDM4Mi4yNQpMIDM4My44IDc2Ny41Ck0gLTEuNDUgMzAyLjIKTCA0NjMuOCA3NjcuNQpNIC0xLjQ1IDMxMi4yCkwgNDUzLjggNzY3LjUKTSAtMS40NSAzMjIuMgpMIDQ0My44IDc2Ny41Ck0gLTEuNDUgMzMyLjIKTCA0MzMuOCA3NjcuNQpNIC0xLjQ1IDM0Mi4yCkwgNDIzLjggNzY3LjUKTSAtMS40NSAzNTIuMjUKTCA0MTMuOCA3NjcuNQpNIC0xLjQ1IDM2Mi4yNQpMIDQwMy44IDc2Ny41Ck0gLTEuNDUgMzcyLjI1CkwgMzkzLjggNzY3LjUKTSAtMS40NSA0MDIuMjUKTCAzNjMuOCA3NjcuNQpNIC0xLjQ1IDQxMi4yNQpMIDM1My44IDc2Ny41Ck0gLTEuNDUgNDMyLjI1CkwgMzMzLjggNzY3LjUKTSAtMS40NSA0NTIuOQpMIDMxMi41IDc2Ni44NQpNIC0xLjQ1IDQ2Mi45CkwgMzAyLjUgNzY2Ljg1Ck0gLTEuNDUgNDcyLjkKTCAyOTIuNSA3NjYuODUKTSAtMS40NSA0ODIuOQpMIDI4Mi41IDc2Ni44NQpNIC0xLjQ1IDQ5Mi45CkwgMjcyLjUgNzY2Ljg1Ck0gLTEuNDUgNTAyLjkKTCAyNjIuNSA3NjYuODUKTSAtMS40NSA1MTIuOQpMIDI1Mi41IDc2Ni44NQpNIC0xLjQ1IDU0Mi45CkwgMjIyLjUgNzY2Ljg1Ck0gLTEuNDUgNTUyLjkKTCAyMTIuNSA3NjYuODUKTSAtMS40NSA1NjIuOQpMIDIwMi41IDc2Ni44NQpNIC0xLjQ1IDU3Mi45CkwgMTkyLjUgNzY2Ljg1Ck0gLTEuNDUgNTgyLjkKTCAxODIuNSA3NjYuODUKTSAtMS40NSA1OTIuOQpMIDE3Mi41IDc2Ni44NQpNIC0xLjQ1IDYwMi45CkwgMTYyLjUgNzY2Ljg1Ck0gLTEuNDUgNjMyLjkKTCAxMzIuNSA3NjYuODUKTSAtMS40NSA2NDIuOQpMIDEyMi41IDc2Ni44NQpNIC0xLjQ1IDY1Mi45CkwgMTEyLjUgNzY2Ljg1Ck0gLTEuNDUgNjYyLjkKTCAxMDIuNSA3NjYuODUKTSAtMS40NSA2NzIuOQpMIDkyLjUgNzY2Ljg1Ck0gLTEuNDUgNjgyLjkKTCA4Mi41IDc2Ni44NQpNIC0xLjQ1IDY5Mi45CkwgNzIuNSA3NjYuODUKTSAtMS40NSA3MjIuOQpMIDQyLjUgNzY2Ljg1Ck0gLTMuNTUgNzUwLjgKTCAxMi41IDc2Ni44NQpNIC0zLjU1IDc0MC44CkwgMjIuNSA3NjYuODUKTSAtMy41NSA3MzAuOApMIDMyLjUgNzY2Ljg1Ii8+Cgo8cGF0aCBpZD0iTGF5ZXIxXzBfMl9TVFJPS0VTIiBzdHJva2U9IiMyMjI2NEQiIHN0cm9rZS1vcGFjaXR5PSIwLjQ5ODAzOTIxNTY4NjI3NDUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSI0IiBmaWxsPSJub25lIiBkPSIKTSAtMS40NSAyMTIuMgpMIDU1My44IDc2Ny41Ck0gLTEuNDUgMjAyLjIKTCA1NjMuOCA3NjcuNQpNIC0xLjQ1IDE4Mi4yCkwgNTgzLjggNzY3LjUKTSAtMS40NSAxOTIuMgpMIDU3My44IDc2Ny41Ck0gLTEuNDUgMTcyLjIKTCA1OTMuOCA3NjcuNSIvPgoKPHBhdGggaWQ9IkxheWVyMV8wXzNfU1RST0tFUyIgc3Ryb2tlPSIjMjIyNjREIiBzdHJva2Utb3BhY2l0eT0iMC4yOTgwMzkyMTU2ODYyNzQ1IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iNCIgZmlsbD0ibm9uZSIgZD0iCk0gLTEuNDUgMTMyLjIKTCA2MzMuOCA3NjcuNQpNIC0xLjQ1IDEyMi4yCkwgNjQzLjggNzY3LjUKTSAtMS40NSAxNTIuMgpMIDYxMy44IDc2Ny41Ck0gLTEuNDUgMTQyLjIKTCA2MjMuOCA3NjcuNQpNIC0xLjQ1IDE2Mi4yCkwgNjAzLjggNzY3LjUiLz4KCjxwYXRoIGlkPSJMYXllcjFfMF80X1NUUk9LRVMiIHN0cm9rZT0iIzIyMjY0RCIgc3Ryb2tlLW9wYWNpdHk9IjAuNjk4MDM5MjE1Njg2Mjc0NSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjQiIGZpbGw9Im5vbmUiIGQ9IgpNIC0xLjQ1IDI2Mi4yCkwgNTAzLjggNzY3LjUKTSAtMS40NSAyMjIuMgpMIDU0My44IDc2Ny41Ck0gLTEuNDUgMjMyLjIKTCA1MzMuOCA3NjcuNQpNIC0xLjQ1IDI0Mi4yCkwgNTIzLjggNzY3LjUKTSAtMS40NSAyNTIuMgpMIDUxMy44IDc2Ny41Ii8+CjwvZGVmcz4KCjxnIHRyYW5zZm9ybT0ibWF0cml4KCAxLCAwLCAwLCAxLCAwLDApICI+Cjx1c2UgeGxpbms6aHJlZj0iI0xheWVyMl8wX0ZJTEwiLz4KPC9nPgoKPGcgdHJhbnNmb3JtPSJtYXRyaXgoIDEsIDAsIDAsIDEsIDAsMCkgIj4KPHVzZSB4bGluazpocmVmPSIjTGF5ZXIxXzBfMV9TVFJPS0VTIi8+Cgo8dXNlIHhsaW5rOmhyZWY9IiNMYXllcjFfMF8yX1NUUk9LRVMiLz4KCjx1c2UgeGxpbms6aHJlZj0iI0xheWVyMV8wXzNfU1RST0tFUyIvPgoKPHVzZSB4bGluazpocmVmPSIjTGF5ZXIxXzBfNF9TVFJPS0VTIi8+CjwvZz4KCjxnIHRyYW5zZm9ybT0ibWF0cml4KCAxLCAwLCAwLCAxLCAwLDApICI+Cjx1c2UgeGxpbms6aHJlZj0iI0xheWVyMF8wX0ZJTEwiLz4KPC9nPgo8L3N2Zz4K" class="lines">
+		<main class="content">
+			  <div class="tabs_set">
+				  <div class="tab_set">
+				   <input type="radio" id="tab1" name="tab-group" checked>
+				   <label for="tab1" class="tab-title"><span class="Text Text_type_h5">Settings</span></label> 
+				   <section class="tab-content">
+					   <p>Enter your private key to recover encrypted information.</p>
+					   <div class="setting_key">
+						   <div class="Collapse-Wrapper">
+							   <div class="rsa-grid">
+								   <div class="item-0">
+									   <h5 class="Text Text_color_high Text_type_h5 Settings-Title">Private Key:</h5>
+									   <div class="private_key_add">
+										   <small><textarea id="privkey_pers" rows="15" style="width:100%"></textarea></small>
+									   </div>
+								   </div>	
+								   <div class="item-1">
+								   </div>
+								   <div class="btn_rsa btn-three">
+									   <input type="submit" id="save_rsa_key" style="padding: 5px 20px; height: 50px;" value="Save">
+								   </div>
+						   </div>
+					   </div>
+				   </section>
+				  </div> 
+				  <div class="tab_set">
+				   <input type="radio" id="tab2" name="tab-group">
+				   <label for="tab2" class="tab-title"><span class="Text Text_type_h5">RSA Key Generator</span></label> 
+				   <section class="tab-content">
+					  <div class="setting_key">
+					  <div class="rsa-grid">
+						   <div class="item-0">
+							  <h5 class="Text Text_color_high Text_type_h5 Settings-Title">Public Key:</h5>
+							  <div class="private_key_add">
+								  <div class="Card Card_view_light Card_width_max" style="white-space: normal; display: block;">
+									  <small><textarea id="pubkey" rows="15" style="width:100%"></textarea></small>
+								  </div>
+							   </div>
+						   </div>
+						   <div class="item-1">
+							  <h5 class="Text Text_color_high Text_type_h5 Settings-Title">Private Key:</h5>
+								  <div class="private_key_add">
+								  <div class="Card Card_view_light Card_width_max" style="white-space: normal; display: block;">
+									  <small><textarea id="privkey" rows="15" style="width:100%"></textarea></small>
+								  </div>
+							   </div>
+						   </div>
+						   <div class="item-full">
+							   <div class="btn_rsa btn-three">
+								   <input type="submit" id="generate" style="padding: 5px 20px; height: 50px;" value="Generate a new key pair">
+								   </div>
+								   <div class="CardData-Body" style="margin-top:20px;padding-top:10px;border-top: 1px solid var(--color-white-low);">
+								   <span><small id="time-report" class="Text Text_color_medium Text_type_body1 Settings-Subtitle"><p>Generated in 0 ms</p></small></span>
+								   </div>
+						   </div>
+					   </div>
+					  </div>
+				   </section>
+				   </div>
+				 </div>
+		</main>
+		<footer class="footer">
+		©2022&nbsp&nbsp<strong><a href="tg://resolve?domain=spacesec" class="button">Space Security SP.</strong></a>
+		</footer>
+</div>  
+</body>
+</html>
