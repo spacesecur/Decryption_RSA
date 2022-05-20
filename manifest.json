@@ -1,23 +1,28 @@
 {
-  "author": "Space Security SP.",
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Decryption RSA",
+  "short_name": "Decryption RSA",
+  "version": "0.0.2",
+  "author": "Space Security SP.",
   "description": "Decryption of encrypted data on RSA key",
-  "version": "0.0.1",
   "icons": {
-      "16": "icons/16.png",
-      "32": "icons/32.png",
-      "48": "icons/48.png",
-      "64": "icons/64.png",
-      "128": "icons/128.png"
-  },
-  "options_page": "options/options.html",
-  "action": {
-      "default_title": "Decryption RSA",
-      "default_popup": "popup/popup.html"
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "64": "icons/64.png",
+    "128": "icons/128.png"
   },
   "permissions": [
     "storage"
-  ]
+  ],
+  "browser_action": {
+     "default_icon": "icons/48.png",
+     "default_popup": "popup/popup.html",
+     "default_title": "Decryption of encrypted data on RSA key"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "chrome_style": false,
+    "open_in_tab": true
+  }
 }
-
