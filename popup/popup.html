@@ -3,22 +3,103 @@
 <head>
 <meta charset="utf-8">
 <title>Decryption RSA</title>
-<style type="text/css">
- body{font-family:"Roboto",Helvetica,Arial,sans-serif;background-color:#151a29;position:relative;margin:auto;height:260px;width:330px;border:none}.wrapper{position:relative;margin:auto}.header-wrapper{color:#fff;font-size:16px;margin:0 auto;padding:10px 25px;margin:0;background-color:#3d3d3d;opacity:.8;background-image:repeating-radial-gradient(circle at 0 0,transparent 0,#3a3a3a 10px),repeating-linear-gradient(#27272755,#141414)}textarea{background:none;border:1px solid #3d3d3d;background:#151a29;font-size:14px;color:rgba(255,255,255,0.6);padding:5px;width:300px!important}textarea :active{outline:0;outline-offset:0;border-bottom:2px solid #fff38e}.btn_rsa{display:inline-block;font-weight:400;text-align:center;vertical-align:middle;cursor:pointer;background-image:none;border:1px solid transparent;white-space:nowrap;padding:3px 12px;line-height:1.4;border-radius:4px;text-decoration:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;padding:0;margin:10px 0;position:relative;float:left}.btn-three{color:#FFF;transition:all .5s;position:relative;z-index:1}.btn-three::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;background-color:rgba(255,255,255,0.1);background-size:200% 200%;animation:animate_gradient 5s ease infinite;transition:all .3s}.btn-three:hover::before{opacity:0;transform:scale(0.5,0.5)}.btn-three::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:0;transition:all .3s;text-decoration:none;border:1px solid #fff38e;transform:scale(1.2,1.2);-webkit-backdrop-filter:blur(0px);backdrop-filter:blur(0px)}.btn-three:hover::after{opacity:1;transform:scale(1,1)}.btn-three:active,.btn-three.active{outline:0;background-image:none;color:#8DCAFE}@keyframes btn-three{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}.btn_rsa input[type=submit]{background:transparent;border:0;color:#fff;font-size:16px;outline:none!important;font-family:'Roboto Condensed';padding:10px 30px}.btn_rsa input[type=submit]:active{-webkit-backdrop-filter:blur(0px);backdrop-filter:blur(0px);color:#fff38e}.rsa_input{border-top:1px solid #424242;margin:0 10px}.rsa_input input[type=text]{background-color:transparent;border:0;color:#fff38e;font-size:16px;margin:10px 0;text-align:center;outline:none!important;font-family:'Roboto Condensed'}.Subtitle{position:relative;padding:10px;left:0;color:rgba(255,255,255,0.6);font-size:14px}::placeholder{color:rgba(255,255,255,0.6);font-size:14px}
-</style>
+<link rel="stylesheet" type="text/css" href="../lib/style.css">
 </head>
-<body>
+<body class="popup-body">
   <div class="wrapper">
     <div class="header-wrapper">Decryption RSA</div>
-    <textarea id="crypted" name="crypted" style="width: 550px; margin:10px 0px 10px 10px;" rows="5" placeholder="Enter data for decryption"></textarea>
-    <div class="rsa_input">
-      <input id="input" name="input" type="text" style="width: 300px;" rows="1"></div>
-    <div class="btn_rsa btn-three" style="margin-left:10px;">
-      <input type="submit" id="decrypt" value="Decrypt">
+    
+    <div class="checkbox-group">
+      <div class="switch-container">
+        <span>Extension Enabled</span>
+        <label class="switch">
+          <input type="checkbox" id="extension_enabled" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="switch-container">
+        <span>Auto Decrypt on Page</span>
+        <label class="switch">
+          <input type="checkbox" id="auto_decrypt">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="tabs-container">
+      <div class="tabs-header">
+        <button class="tab-button active" data-tab="tab1">Encrypt/Decrypt</button>
+        <button class="tab-button" data-tab="tab2">Settings</button>
+      </div>
+
+      <div id="tab1" class="tab-content active">
+        <div class="form-group">
+          <label for="data_input">Enter data:</label>
+          <textarea id="data_input" placeholder="Enter text to encrypt or encrypted data to decrypt" rows="6"></textarea>
+          <div id="char_counter" style="color: rgba(255,255,255,0.6); font-size: 11px; margin-top: 5px; font-family: Roboto, Tahoma, Arial, Verdana, sans-serif;">
+            <span id="char_count">0</span> characters
+            <span id="max_length_info" style="margin-left: 10px;"></span>
+          </div>
+          <div style="margin-top: 10px; padding: 10px; background-color: rgba(141,202,254,0.1); border-radius: 5px; border: 1px solid rgba(141,202,254,0.3);">
+            <div style="color: #8DCAFE; font-size: 11px; font-weight: 600; margin-bottom: 5px; font-family: Roboto, Tahoma, Arial, Verdana, sans-serif;">Why is there a message length limit?</div>
+            <div style="color: rgba(255,255,255,0.7); font-size: 10px; line-height: 1.4; font-family: Roboto, Tahoma, Arial, Verdana, sans-serif;">
+              RSA encrypts data in blocks. The maximum block size depends on the key size minus padding overhead (PKCS#1 padding uses ~11 bytes for security). For larger messages, use a bigger key (4096 bits) or split the message into parts.
+            </div>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn btn-primary" id="encode_btn">Encode</button>
+          <button class="btn btn-primary" id="decode_btn">Decode</button>
+        </div>
+      </div>
+
+      <div id="tab2" class="tab-content">
+        <div class="checkbox-group">
+          <div class="switch-container">
+            <span>Decrypt on Current Site <span id="current_domain"></span></span>
+            <label class="switch">
+              <input type="checkbox" id="decrypt_on_current_site">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top: 20px;">
+          <button class="btn btn-primary" id="start_selection_btn" style="width: 100%;">Activate Element Selection Mode</button>
+          <div style="margin-top: 15px; padding: 12px; background-color: rgba(141,202,254,0.1); border-radius: 6px; border: 1px solid rgba(141,202,254,0.3);">
+            <div style="color: #8DCAFE; font-size: 12px; font-weight: 600; margin-bottom: 8px; font-family: Roboto, Tahoma, Arial, Verdana, sans-serif;">How to use Element Selection Mode:</div>
+            <ol style="color: rgba(255,255,255,0.8); font-size: 11px; line-height: 1.6; margin: 0; padding-left: 20px; font-family: Roboto, Tahoma, Arial, Verdana, sans-serif;">
+              <li style="margin-bottom: 6px;">Click "Activate Element Selection Mode" button above</li>
+              <li style="margin-bottom: 6px;">Go to the webpage where encrypted text is displayed</li>
+              <li style="margin-bottom: 6px;">Move your mouse over elements containing encrypted text - they will be highlighted</li>
+              <li style="margin-bottom: 6px;">Click on the element to select it for automatic decryption</li>
+              <li style="margin-bottom: 6px;">Selected elements will be automatically decrypted when "Auto Decrypt on Page" and "Decrypt on Current Site" are enabled</li>
+              <li>Click the button again (now "Stop Element Selection Mode") to exit selection mode</li>
+            </ol>
+          </div>
+        </div>
+        
+        <div class="form-group" style="margin-top: 20px;">
+          <div style="color: #8DCAFE; font-size: 13px; font-weight: 600; margin-bottom: 10px; font-family: Roboto, Tahoma, Arial, Verdana, sans-serif;">Saved Elements for Current Site:</div>
+          <div id="saved_elements_list" style="margin-bottom: 15px; min-height: 50px; max-height: 200px; overflow-y: auto; padding: 10px; background-color: rgba(255,255,255,0.05); border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);">
+            <div style="color: rgba(255,255,255,0.5); font-size: 11px; text-align: center; padding: 10px; font-family: Roboto, Tahoma, Arial, Verdana, sans-serif;">No elements saved yet</div>
+          </div>
+          
+          <div style="margin-top: 15px;">
+            <label for="manual_selector_input" style="display: block; color: rgba(255,255,255,0.8); font-size: 12px; margin-bottom: 8px; font-family: Roboto, Tahoma, Arial, Verdana, sans-serif;">Add Element Selector Manually:</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="text" id="manual_selector_input" placeholder="e.g., #myElement or .encrypted-text" style="flex: 1; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 8px 12px; color: rgba(255,255,255,0.9); font-size: 12px; font-family: Roboto, Tahoma, Arial, Verdana, sans-serif; outline: none;">
+              <button class="btn btn-primary" id="add_manual_selector_btn" style="padding: 8px 16px; white-space: nowrap;">Add</button>
+            </div>
+            <div style="color: rgba(255,255,255,0.5); font-size: 10px; margin-top: 5px; font-family: Roboto, Tahoma, Arial, Verdana, sans-serif;">
+              Enter a CSS selector (e.g., #id, .class, div > span)
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </body>
-<script type="text/javascript" src="jquery.min.js"></script>
-<script type="text/javascript" src="jsencrypt.min.js"></script>
+<script type="text/javascript" src="../lib/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/jsencrypt.min.js"></script>
 <script type="text/javascript" src="popup.js"></script>
 </html>

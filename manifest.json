@@ -1,28 +1,39 @@
 {
-  "manifest_version": 2,
+  "author": "Security SP.",
+  "manifest_version": 3,
   "name": "Decryption RSA",
-  "short_name": "Decryption RSA",
-  "version": "0.0.2",
-  "author": "Space Security SP.",
-  "description": "Decryption of encrypted data on RSA key",
+  "description": "A powerful browser extension for RSA encryption and decryption. Encrypt data with public keys, decrypt with private keys. Features include automatic decryption on web pages, element selection mode, key pair generation (1024/2048/4096 bits), secure local storage, and domain-specific settings. All keys are stored locally in your browser for maximum security.",
+  "version": "1.0.7",
   "icons": {
-    "16": "icons/16.png",
-    "32": "icons/32.png",
-    "48": "icons/48.png",
-    "64": "icons/64.png",
-    "128": "icons/128.png"
+      "16": "icons/16.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "64": "icons/64.png",
+      "128": "icons/128.png"
+  },
+  "options_page": "options/options.html",
+  "action": {
+      "default_title": "Decryption RSA",
+      "default_popup": "popup/popup.html"
   },
   "permissions": [
-    "storage"
+    "storage",
+    "activeTab",
+    "tabs",
+    "scripting"
   ],
-  "browser_action": {
-     "default_icon": "icons/48.png",
-     "default_popup": "popup/popup.html",
-     "default_title": "Decryption of encrypted data on RSA key"
-  },
-  "options_ui": {
-    "page": "options/options.html",
-    "chrome_style": false,
-    "open_in_tab": true
-  }
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["lib/jsencrypt.min.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
+
